@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="redlight">#ef233c</color>
+    <color name="reddark">#d90429</color>
+    <color name="smoke">#C8CCCD</color>
+    <color name="ash">#8d99ae</color>
+    <color name="grey">#2b2d42</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

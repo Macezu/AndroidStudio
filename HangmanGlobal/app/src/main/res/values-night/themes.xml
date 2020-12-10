@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.HangmanGlobal" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/night</item>
+        <item name="colorPrimaryVariant">@color/darkgray</item>
+        <item name="colorOnPrimary">@color/snow</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/crimsonred</item>
+        <item name="colorSecondaryVariant">@color/rossopompei</item>
+        <item name="colorOnSecondary">@color/ash</item>
+        <!-- Status bar color. -->
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@drawable/gradientnight_bg</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

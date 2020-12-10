@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Taajuuteni</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="about_settings">Tietoa</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="logodesc">Logo of station</string>
+    <string name="titletext">Name:%1$s</string>
+    <string name="freqtext">105.4Hz</string>
+    <string name="detailstext">Municipality:%1$s Latitude:%2$s Longitude:%3$s Licence:%4$s</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="etaisyysohje">Suurin etäisyys radiokanavien etsimiseen: %1$s KM</string>
+    <string name="etaisyyskm">Etäisyys kilometreinä</string>
+    <string name="filterinstructions">Rajaa tulokset GPS sijaintisi perusteella</string>
+    <string name="updatebtn">Päivitä</string>
+    <string name="locations">Latitude: %1$s Longitude: %2$s </string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

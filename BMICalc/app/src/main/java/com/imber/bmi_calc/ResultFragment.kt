@@ -21,7 +21,6 @@ import java.util.*
 class ResultFragment : Fragment(R.layout.fragment_third) {
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -74,7 +73,6 @@ class ResultFragment : Fragment(R.layout.fragment_third) {
             }
         series.isDrawDataPoints = true
         return  series
-
     }
 
     private fun formatNameInTextView(_introText: TextView){
