@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HangmanGlobal</string>
+    <string name="welcome">Vaikeus:</string>
+    <string name="flagdesc">Lipun_kuvaus:</string>
+    <string name="hint_tokens">Pelastuspoletit: %1$s</string>
+    <string name="select_language">Valitse Kieli</string>
+    <string name="singlep">Yksinpelaaja</string>
+    <string name="multiplayer"><strike>Moninpelaaja</strike></string>
+    <string name="start">Aloita Peli</string>
+    <string name="congrats">ONNEKSI OLKOON!</string>
+    <string name="toobad">Tämä oli vaikea!</string>
+    <string name="currentstr">Tämän hetkinen sarja: %1$s</string>
+    <string name="earnedsaviour">Ansaitsit pelastuspoletin</string>
+    <string name="definition">Kuvaus</string>
+    <string name="backhome">Koti</string>
+    <string name="usesaviour">Pelasta itsesi kolikolla?</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="watchad">Mainoksella saisit kaksi lisäyritystä?</string>
+    <string name="leaderboard">Tulostauluko</string>
+    <string name="yourbeststreak">Paras sarjasi: %1$s</string>
+    <string name="garage">Varasto</string>
+    <string name="achievements">Saavutukset</string>
+    <string name="sound">Ääni</string>
+    <string name="shop">Kauppa</string>
+    <string name="rate">Arvostele</string>
+    <string name="easy">Helppo</string>
+    <string name="normald">Normaali</string>
+    <string name="hardd">Vaikea</string>
+    <string name="impossibled">Mahdoton</string>
+    <string name="feedbackok">Palaute lähetetty onnistuneesti</string>
+    <string name="feedbacknotok">Palautteen anto ei onnistunut</string>
+</resources>

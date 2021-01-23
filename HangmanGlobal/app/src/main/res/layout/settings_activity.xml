@@ -1,0 +1,89 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.common.SignInButton
+        android:visibility="invisible"
+        android:id="@+id/signInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/backhomebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shopbtn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/garage"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/leaderboardbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/leaderb"
+        app:layout_constraintBottom_toTopOf="@+id/rateusbtn"
+        app:layout_constraintEnd_toStartOf="@+id/achievbtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/rate"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/achievbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/achiev"
+        app:layout_constraintBottom_toTopOf="@+id/shopbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leaderboardbtn"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/achievements"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/shopbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/cart"
+        app:layout_constraintBottom_toTopOf="@+id/backhomebtn"
+        app:layout_constraintEnd_toEndOf="@+id/leaderboardbtn"
+        app:layout_constraintStart_toStartOf="@+id/leaderboardbtn"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:contentDescription="@string/shop"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/rateusbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/thumb"
+        app:layout_constraintBottom_toTopOf="@+id/backhomebtn"
+        app:layout_constraintEnd_toEndOf="@+id/achievbtn"
+        app:layout_constraintStart_toStartOf="@+id/achievbtn"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:contentDescription="@string/rate"/>
+
+    <Button
+        android:id="@+id/backhomebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/backhome"
+        android:backgroundTint="?colorSecondary"
+        android:textColor="?colorOnSecondary"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

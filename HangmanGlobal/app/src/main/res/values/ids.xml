@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Google Play game services IDs. Save this file as res/values/games-ids.xml in your project.-->
+<resources>
+    <!--app_id-->
+    <string name="app_id" translatable="false">987276408623</string>
+    <!--package_name-->
+    <string name="package_name" translatable="false">com.imber.hangmanglobal</string>
+    <!--achievements-->
+    <string name="firsttimer" translatable="false">CgkIr-6J8t0cEAIQAg</string>
+    <string name="adolescent" translatable="false">CgkIr-6J8t0cEAIQBA</string>
+    <string name="experienced" translatable="false">CgkIr-6J8t0cEAIQBQ</string>
+    <string name="oldtimer" translatable="false">CgkIr-6J8t0cEAIQBg</string>
+    <string name="masterofwords" translatable="false">CgkIr-6J8t0cEAIQDg</string>
+    <string name="jackofalltrades" translatable="false">CgkIr-6J8t0cEAIQBw</string>
+    <string name="intellectual" translatable="false">CgkIr-6J8t0cEAIQCA</string>
+    <string name="how" translatable="false">CgkIr-6J8t0cEAIQCQ</string>
+
+    <!--leaderboard-->
+    <string name="leaderboard_mvp" translatable="false">CgkIr-6J8t0cEAIQAw</string>
+    <string name="leaderboard_longest_streak" translatable="false">CgkIr-6J8t0cEAIQAA</string>
+    <string name="leaderboard_english" translatable="false">CgkIr-6J8t0cEAIQCg</string>
+    <string name="leaderboard_italian" translatable="false">CgkIr-6J8t0cEAIQDQ</string>
+    <string name="leaderboard_swedish" translatable="false">CgkIr-6J8t0cEAIQDA</string>
+    <string name="leaderboard_finnish" translatable="false">CgkIr-6J8t0cEAIQCw</string>
+</resources>

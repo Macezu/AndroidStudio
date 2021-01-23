@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="goofendings">
+        <item>You Rock!</item>
+        <item>GG EZ</item>
+        <item>Wow, you did nailed it</item>
+        <item>Another One Bites the dust</item>
+        <item>Congratulations you win!</item>
+        <item>I honestly thought you wouldn\'t pull it off </item>
+        <item>Godlike</item>
+        <item>Unstoppable</item>
+        <item>DOMINATING!!</item>
+        <item>RAMPAGE!</item>
+        <item><u> WINNER</u> </item>
+        <item>Winning isn\’t everything, it\’s the only thing.</item>
+        <item>All i do is win win win, no matter what</item>
+        <item>Suffering from success</item>
+        <item>I\'m intelligent. Some people would say I\'m very, very, very intelligent.</item>
+    </string-array>
+    <string-array name="baadendigs">
+        <item>You win some, you Lose some</item>
+        <item>Oooh... a close one!</item>
+        <item>I believe in you little one</item>
+        <item>Stop the count</item>
+        <item>The game is rigged, it\'s not you</item>
+        <item>Well you can\'t win them all right?</item>
+        <item>wow... just... wow</item>
+        <item>You almost had it!</item>
+        <item>There\'s no light at the end of the tunnel</item>
+        <item>Hangman susp..</item>
+        <item>Player was ejected</item>
+        <item>Failure isn\'t fatal, but failure to change might be</item>
+        <item>The phoenix must burn to emerge</item>
+        <item>Giving up is the only sure way to fail</item>
+        <item>There is no failure except in no longer trying</item>
+    </string-array>
+</resources>

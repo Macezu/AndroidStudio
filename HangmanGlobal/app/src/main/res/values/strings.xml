@@ -1,14 +1,58 @@
 <resources>
-    <string name="hint_tokens">Hint Tokens: %1$s</string>
-    <string name="welcome">Welcome %1$s</string>
+    <string name="hint_tokens">Saviour Tokens: %1$s</string>
+    <string name="welcome">Difficulty:</string>
+    <string name="easy">Easy</string>
+    <string name="normald">Normal</string>
+    <string name="hardd">Hard</string>
+    <string name="impossibled">Impossible</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="yourbeststreak">Your best streak: %1$s</string>
     <string name="flagdesc">Flag_description</string>
-    <string name="usa">English</string>
-    <string name="fin">Finnish</string>
-    <string name="swed">Swedish</string>
-    <string name="ita">Italian</string>
+    <string name="usa" translatable="false">English</string>
+    <string name="fin" translatable="false">Finnish</string>
+    <string name="swed" translatable="false">Swedish</string>
+    <string name="ita" translatable="false">Italian</string>
     <string name="app_name">HangmanGlobal</string>
     <string name="select_language">Select Language</string>
     <string name="singlep">Single Player</string>
     <string name="multiplayer"><strike>Multi Player</strike></string>
     <string name="start">Start Game</string>
+    <string name="livesR" translatable="false">7</string>
+    <string name="hmpoints" translatable="false">0</string>
+    <string name="congrats">CONGRATULATIONS!</string>
+    <string name="toobad">It was a hard one!</string>
+    <string name="lorem" translatable="false">Lorem Ipsum</string>
+    <string name="currentstr">Current streak: %1$s</string>
+    <string name="feedbackok">Feedback sent successfully</string>
+    <string name="feedbacknotok">Failed to send feedback</string>
+    <string name="usesaviour">Safe yourself with a token?</string>
+    <string name="earnedsaviour">You earned a saviour token!</string>
+    <string name="watchad">Watch an ad for two extra lives?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="plustwo" translatable="false">+2</string>
+    <string name="wikipage" translatable="false">https://%1$s.wikipedia.org/wiki/%2$s</string>
+    <string name="definition">Definition</string>
+    <string name="backhome">Home</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
+    <string name="garage">Garage</string>
+    <string name="achievements">Achievements</string>
+    <string name="sound">Sound</string>
+    <string name="shop">Shop</string>
+    <string name="rate">Rate</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
 </resources>

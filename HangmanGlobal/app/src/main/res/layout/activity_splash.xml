@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/splashlogo"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:src="@drawable/imberlogo"
         app:layout_constraintBottom_toTopOf="@+id/progress_horizontal"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HangmanGlobal</string>
+    <string name="hint_tokens">Monete salvezza: %1$s</string>
+    <string name="welcome">Difficoltà:</string>
+    <string name="flagdesc">Descrizione_bandiera</string>
+    <string name="select_language">Seleziona lingua</string>
+    <string name="singlep">Gioca Solo</string>
+    <string name="multiplayer"><strike>Gioca con un amico</strike></string>
+    <string name="start">Comincia</string>
+    <string name="congrats">Auquri hai vinto!</string>
+    <string name="toobad">Era tosta!</string>
+    <string name="currentstr">" Consecutive :  %1$s"</string>
+    <string name="earnedsaviour">Hai vinto una moneta!</string>
+    <string name="definition">Descrizione</string>
+    <string name="backhome">Casa</string>
+    <string name="usesaviour">Vuoi salvarti con una moneta?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="watchad">Guarda un ad per ricevere due vite?</string>
+    <string name="leaderboard">Tabellone</string>
+    <string name="yourbeststreak">Record vittorie consecutive: %1$s</string>
+    <string name="garage">Garage</string>
+    <string name="sound">Suoni</string>
+    <string name="shop">Negozio</string>
+    <string name="rate">Vota</string>
+    <string name="achievements">Successi</string>
+    <string name="easy">Facile</string>
+    <string name="normald">Normale</string>
+    <string name="hardd">Difficile</string>
+    <string name="impossibled">Impossibile</string>
+    <string name="feedbackok">Feedback inviato con successo</string>
+    <string name="feedbacknotok">Impossibile inviare feedback</string>
+</resources>

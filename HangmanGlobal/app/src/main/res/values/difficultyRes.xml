@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="diff_array">
+        <item>@string/easy</item>
+        <item>@string/normald</item>
+        <item>@string/hardd</item>
+        <item>@string/impossibled</item>
+    </string-array>
+</resources>

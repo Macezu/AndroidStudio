@@ -9,6 +9,11 @@
     <color name="seablue">#246EB9</color>
     <color name="lightsand">#FFEEDB</color>
 
+
+    <color name="rightgreen">#07A30B</color>
+    <color name="gold">#FFD700</color>
+    <color name="trans">#00FBFBFB</color>
+
     <!--Dark-->
     <color name="night">#0B090A</color>
     <color name="darkgray">#161A1D</color>
