@@ -14,8 +14,8 @@ class ClientSend : Runnable {
     override fun run() {
         try {
             val udpSocket = DatagramSocket(5000)
-            val serverAddr: InetAddress = InetAddress.getByName("176.72.188.196")
-            val buf = "WE ARE THE KINGS".toByteArray()
+            val serverAddr: InetAddress = InetAddress.getByName("IPADRESSHERE")
+            val buf = "TEST MESSAGE".toByteArray()
             val packet = DatagramPacket(buf, buf.size, serverAddr, 5000)
             udpSocket.send(packet)
             println("MSG SENT!")
