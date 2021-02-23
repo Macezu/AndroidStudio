@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1065967242591",
+    "firebase_url": "https://lightsensorv2-default-rtdb.firebaseio.com",
+    "project_id": "lightsensorv2",
+    "storage_bucket": "lightsensorv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065967242591:android:dceee729c6967312eb7aea",
+        "android_client_info": {
+          "package_name": "com.imber.senorlight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065967242591-2mfsitphdasjq3upcupiagvc7j8cdmj7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAO8RTd7Rq91d-CWNYR5WI6qJxwDLWRu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065967242591-2mfsitphdasjq3upcupiagvc7j8cdmj7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
