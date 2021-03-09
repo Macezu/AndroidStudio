@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         // Read from the database
         val database = FirebaseDatabase.getInstance()
         myRef = database.reference
-        println("Value $maxValues")
 
         sendbtn.setOnClickListener {
             val SDK_INT = Build.VERSION.SDK_INT
@@ -84,12 +83,12 @@ class MainActivity : AppCompatActivity() {
                 var data: HashMap<String, ArrayList<Long>>
                 //Check if data from today
                 if (dataSnapshot.child(getDate("dd_M")).value != null) {
-                    data =
-                            dataSnapshot.child(getDate("dd_M")).value as HashMap<String, ArrayList<Long>>
+                    data = dataSnapshot.child(getDate("dd_M")).value as HashMap<String, ArrayList<Long>>
+                    println("value Data ${data}")
 
                 } else {
                     // Get last data from yesterday
-                    data = dataSnapshot.child("18_2").value as HashMap<String, ArrayList<Long>>
+                    data = dataSnapshot.child("27_2").value as HashMap<String, ArrayList<Long>>
                 }
 
                 // All Values Listed
@@ -104,6 +103,7 @@ class MainActivity : AppCompatActivity() {
                 var ts = timeStamp()
                 Toast.makeText(this@MainActivity,"New Value Added",Toast.LENGTH_SHORT).show()
                 // Latest Text update
+                println("values ${latestmax}")
                 latest.text = getString(R.string.lorem, ts, latestmax, latestmed)
 
 
@@ -199,7 +199,6 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until medianValues!!.size) {
                 x = convertLongToTime(timestampValues!![i])
                 y = medianValues!![i].toDouble()
-                println("values $y")
                 series.appendData(DataPoint(x, y), true, 30)
             }
 
@@ -220,7 +219,8 @@ class MainActivity : AppCompatActivity() {
         if (maxValues != null){
             for (i in 0 until maxValues!!.size) {
                 x = convertLongToTime(timestampValues!![i])
-                //println("values ${convertLongToTime(timestampValues!![i])}")
+
+                //println("values time ${convertLongToTime(timestampValues!![i])}")
                 y = maxValues!![i].toDouble()
                 series.appendData(DataPoint(x, y), true, 30)
             }
@@ -257,9 +257,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun convertLongToTime(time: Long): Date {
-        val date = Date(time)
-        val format = SimpleDateFormat("HH:mm")
-        return date
+        return Date(time)
     }
 
 
