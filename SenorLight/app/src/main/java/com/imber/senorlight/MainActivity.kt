@@ -236,7 +236,6 @@ class MainActivity : AppCompatActivity() {
         return  series
     }
 
-
     fun getDate(format: String): String {
 
         var current = LocalDateTime.now()
