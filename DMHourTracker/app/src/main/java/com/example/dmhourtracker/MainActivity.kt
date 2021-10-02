@@ -69,6 +69,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 true
+            }android.R.id.home -> {
+                onBackPressed()
+                return true
             }
             else -> super.onOptionsItemSelected(item)
         }

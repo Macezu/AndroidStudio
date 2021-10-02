@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    //Light the noobs choice
+    <color name="alice_white">#EDF2F4</color>
+    <color name="russian_green">#749C75</color>
+    <color name="dark_olive_green">#657153</color>
+    <color name="french_lilac">#885A89</color>
+    <color name="gb_craynola">#3E92CC</color>
+    <color name="midnight_blue">#0A014F</color>
+
+
+    //Dark and the only real theme for chads
+    <color name="rich_black">#00171F</color>
+    <color name="canary">#F8F991</color>
+    <color name="max_yellow">#FCFF4B</color>
+    <color name="dodger_blue">#1098F7</color>
+    <color name="ghost_white">#FAFAFF</color>
+    <color name="cinnabar">#D64933</color>
+    <color name="dark_sienna">#37000A</color>
+
 </resources>
