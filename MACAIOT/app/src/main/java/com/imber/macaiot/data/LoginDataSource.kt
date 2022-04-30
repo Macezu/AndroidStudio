@@ -10,9 +10,6 @@ import java.io.IOException
  */
 class LoginDataSource {
 
-
-
-
     fun login(username: String, password: String): Result<LoggedInUser> {
         return try {
             // TODO: handle loggedInUser authentication
@@ -23,7 +20,7 @@ class LoginDataSource {
         }
     }
 
-    fun logout() {
-        // TODO: revoke authentication
+    fun logout(auth: FirebaseAuth) {
+        auth.signOut()
     }
 }

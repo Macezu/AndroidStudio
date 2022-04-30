@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var mAuth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         mAuth = FirebaseAuth.getInstance();
+
+
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
                 .get(LoginViewModel::class.java)
@@ -68,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
+            //finish()
         })
 
         username.afterTextChanged {
@@ -92,7 +95,8 @@ class LoginActivity : AppCompatActivity() {
                         loginViewModel.login(
                                 username.text.toString(),
                                 password.text.toString(),
-                                mAuth
+                                mAuth,
+                                this@LoginActivity
                         )
                 }
                 false
@@ -100,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString(),mAuth)
+                loginViewModel.login(username.text.toString(), password.text.toString(),mAuth,this@LoginActivity)
             }
         }
     }
@@ -115,6 +119,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun updateUiWithUser(model: FirebaseUser) {
         val welcome = getString(R.string.welcome)
@@ -148,3 +153,4 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
 }
+

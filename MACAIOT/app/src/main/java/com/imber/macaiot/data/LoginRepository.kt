@@ -26,27 +26,34 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logout() {
+    fun logout(auth: FirebaseAuth) {
         user = null
-        dataSource.logout()
+        dataSource.logout(auth)
     }
 
     fun login(email: String, password: String, auth: FirebaseAuth, loginActvity: LoginActivity): FirebaseUser? {
         // handle login
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(loginActvity) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    setLoggedInUser(user)
+        var fbUser : FirebaseUser?
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(loginActvity) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithEmail:success")
+                        fbUser = auth.currentUser
+                        setLoggedInUser(fbUser)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        fbUser = null
+                    }
                 }
-            }
 
         return user
     }
 
     private fun setLoggedInUser(loggedInUser: FirebaseUser?) {
+        println("TÄÄLLÄ")
+        println(loggedInUser)
         this.user = loggedInUser
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore

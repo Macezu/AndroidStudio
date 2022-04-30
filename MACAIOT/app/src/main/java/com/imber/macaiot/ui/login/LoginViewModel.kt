@@ -17,9 +17,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String,auth : FirebaseAuth) {
+    fun login(username: String, password: String,auth : FirebaseAuth, loginActivity: LoginActivity) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password, auth,this)
+        val result = loginRepository.login(username, password, auth,loginActivity)
 
         if (result  != null) {
             _loginResult.value = LoginResult(success = LoggedInUserView(user = result))
