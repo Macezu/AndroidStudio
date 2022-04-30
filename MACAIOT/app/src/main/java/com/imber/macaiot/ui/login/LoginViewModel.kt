@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import com.google.firebase.auth.FirebaseAuth
 import com.imber.macaiot.data.LoginRepository
-import com.imber.macaiot.data.Result
 
 import com.imber.macaiot.R
 
@@ -17,12 +17,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String,auth : FirebaseAuth) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+        val result = loginRepository.login(username, password, auth,this)
 
-        if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+        if (result  != null) {
+            _loginResult.value = LoginResult(success = LoggedInUserView(user = result))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }
