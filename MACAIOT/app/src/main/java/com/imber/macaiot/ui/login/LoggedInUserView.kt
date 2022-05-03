@@ -8,4 +8,6 @@ import com.google.firebase.auth.FirebaseUser
 data class LoggedInUserView(
         val user: FirebaseUser
         //... other data fields that may be accessible to the UI
+
 )
+
