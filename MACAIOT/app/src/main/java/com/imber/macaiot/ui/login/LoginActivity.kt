@@ -122,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun updateUiWithUser(model: FirebaseUser) {
-        val welcome = getString(R.string.welcome)
+        val welcome = getString(R.string.update)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
         val intent = Intent(this,MainActivity::class.java);

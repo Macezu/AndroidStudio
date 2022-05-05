@@ -9,6 +9,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="noMetric">Please Refresh</string>
+    <string name="fetch_data">FetchData</string>
+    <string name="no_Metrics">No metrics fetched</string>
     <string name="latestMetric">Latest metric from %1$s: %2$s</string>
 </resources>

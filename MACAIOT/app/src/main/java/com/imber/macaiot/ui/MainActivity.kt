@@ -2,6 +2,7 @@ package com.imber.macaiot.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.snapshot.Index
 import com.imber.macaiot.R
 import com.imber.macaiot.ui.login.LoggedInUserView
 import com.jjoe64.graphview.GraphView
@@ -32,9 +34,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val fetchDataB = findViewById<Button>(R.id.fetchData)
 
 
-        saveData()
+        getDataFromFireBase()
+
+        fetchDataB.setOnClickListener {
+            fetchLoadedMetrics()
+        }
 
     }
 
@@ -42,12 +49,12 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
 
-        saveData()
+        getDataFromFireBase()
     }
 
 
-    private fun saveData(){
-        val latestMetric = findViewById<TextView>(R.id.latestMetric)
+    private fun getDataFromFireBase(){
+
         val calendar = Calendar.getInstance()
         var day : Int = calendar.get(Calendar.DAY_OF_MONTH)
         var monthD : Int = calendar.get(Calendar.MONTH) +1 //The Months are numbered from 0 (January) to 11 (December).
@@ -69,14 +76,40 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        if(MetricsData.SnapshotList.size > 0) {
-            MetricsData.SnapshotList.sortByDescending { it.key }
-            latestMetric.text = getString(R.string.latestMetric,MetricsData.SnapshotList[0].key,MetricsData.SnapshotList[0].value)
-        }
-
 
 
     }
+
+    private fun fetchLoadedMetrics(){
+        val latestTv = findViewById<TextView>(R.id.latestMetric)
+        var highestMetric : Int = -1
+        var tmpIndex : Int = 0
+        if(MetricsData.SnapshotList.size > 0) {
+
+            // Get latest time this could be just refactored as a comparator
+            MetricsData.SnapshotList.forEachIndexed { index,element ->
+                var value : String = element.key?.get(0).toString()
+                if (element.key?.get(1).toString() != ":"){
+                    value = value.plus(element.key?.get(1).toString())
+                }
+                println("val $value")
+                println("hMetr $highestMetric")
+                if (highestMetric < value.toInt()) {
+                    highestMetric = value.toInt()
+                    tmpIndex = index
+                }
+            }
+            latestTv.text = getString(R.string.latestMetric,MetricsData.SnapshotList[tmpIndex].key,MetricsData.SnapshotList[tmpIndex].value)
+        }
+    }
+
+    private fun GetLatestValue(){
+
+    }
+
+
+
+
 
 
 }
