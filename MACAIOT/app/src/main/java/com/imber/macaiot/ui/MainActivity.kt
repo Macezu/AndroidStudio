@@ -48,13 +48,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-
         getDataFromFireBase()
     }
 
 
     private fun getDataFromFireBase(){
-
         val calendar = Calendar.getInstance()
         var day : Int = calendar.get(Calendar.DAY_OF_MONTH)
         var monthD : Int = calendar.get(Calendar.MONTH) +1 //The Months are numbered from 0 (January) to 11 (December).
@@ -84,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         val latestTv = findViewById<TextView>(R.id.latestMetric)
         var highestMetric : Int = -1
         var tmpIndex : Int = 0
+
         if(MetricsData.SnapshotList.size > 0) {
 
             // Get latest time this could be just refactored as a comparator
@@ -92,20 +91,18 @@ class MainActivity : AppCompatActivity() {
                 if (element.key?.get(1).toString() != ":"){
                     value = value.plus(element.key?.get(1).toString())
                 }
-                println("val $value")
-                println("hMetr $highestMetric")
                 if (highestMetric < value.toInt()) {
                     highestMetric = value.toInt()
                     tmpIndex = index
                 }
             }
             latestTv.text = getString(R.string.latestMetric,MetricsData.SnapshotList[tmpIndex].key,MetricsData.SnapshotList[tmpIndex].value)
+        }else {
+            Toast.makeText(this,"Snapshot Size = 0",Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun GetLatestValue(){
 
-    }
 
 
 
