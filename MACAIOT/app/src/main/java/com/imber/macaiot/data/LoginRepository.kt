@@ -2,6 +2,7 @@ package com.imber.macaiot.data
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.imber.macaiot.ui.login.LoginActivity
@@ -45,6 +46,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(loginActivity,"Could not login, please check credentials", Toast.LENGTH_LONG).show()
                         fbUser = null
                     }
 
@@ -53,7 +55,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
     }
 
     private fun setLoggedInUser(loggedInUser: FirebaseUser) {
-        println("kissa $loggedInUser")
         this.user = loggedInUser
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore

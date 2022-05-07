@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                println("TÄÄLLÄ Jes")
+
                 updateUiWithUser(mAuth.currentUser!!.email!!)
             }
             setResult(Activity.RESULT_OK)
