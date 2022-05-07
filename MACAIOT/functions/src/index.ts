@@ -11,28 +11,30 @@ const currentTime: Date = new Date();
 const year: string = currentTime.getFullYear().toString();
 const month: string = (currentTime.getMonth() + 1).toString();
 const day: string = currentTime.getDate().toString();
+const hours : string = currentTime.getHours().toString();
 
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
-export const helloWorld = functions.https.onRequest((_request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
-});
+// export const helloWorld = functions.https.onRequest((_request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
 
 
 // Sends a notifications to all users when a new message is posted.
-exports.sendNotifications = functions.firestore.document(`"/${year}/${month}/${day}"`).onCreate(
+exports.sendNotifications = functions.firestore.document(`${year}/${month}/${day}`).onCreate(
     async (snapshot) => {
       // Notification details.
-      const text = snapshot.data().text;
-      functions.logger.log(text);
+      functions.logger.log(hours+" atm");
+      const ssData = snapshot.data();
+      functions.logger.log(`${ssData.hours}:00`);
       const payload = {
         notification: {
-          title: `${snapshot.data().name} posted ${text ? "a message" : "an image"}`,
-          body: text ? (text.length <= 100 ? text : text.substring(0, 97) + "...") : "",
-          click_action: `https://${process.env.GCLOUD_PROJECT}.firebaseapp.com`,
+          title: "New Metric",
+          body: ssData ? `${ssData.hours}:00` : "ssData empty",
+          // click_action: `https://${process.env.GCLOUD_PROJECT}.firebaseapp.com`,
         },
       };
 
