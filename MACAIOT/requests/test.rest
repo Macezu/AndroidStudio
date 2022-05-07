@@ -1,0 +1,7 @@
+@url = http://localhost:5001
+### REST EXTENSION CHANGING PORT TO 127.0.0.1... so this is not working atm
+### GET FROM Test function Server
+GET http://localhost:5001/lightsensorv2/us-central1/helloWorld
+
+
+
