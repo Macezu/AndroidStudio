@@ -8,6 +8,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.imber.macaiot.data.LoginRepository
 
 import com.imber.macaiot.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -18,14 +22,19 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(username: String, password: String,auth : FirebaseAuth, loginActivity: LoginActivity) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password, auth,loginActivity)
+        // Launches aSyncJob that returns user if authentication successful
+        GlobalScope.launch(Dispatchers.IO) {
+            val authUser =  async {loginRepository.login(username, password, auth,loginActivity)}
 
-        if (result  != null) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(user = result))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            if (authUser  != null) {
+                _loginResult.postValue(LoginResult(success = authUser.await()?.let { LoggedInUserView(user = it) }))
+
+            } else {
+                _loginResult.postValue(LoginResult(error = R.string.login_failed))
+            }
         }
+
+
     }
 
     fun loginDataChanged(username: String, password: String) {

@@ -60,13 +60,14 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
             val loginResult = it ?: return@Observer
-
+            println("TÄÄLLÄ Observerissa: $loginResult")
             loading.visibility = View.GONE
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                mAuth.currentUser?.let { it1 -> updateUiWithUser(it1) }
+                println("TÄÄLLÄ Jes")
+                updateUiWithUser(mAuth.currentUser!!.email!!)
             }
             setResult(Activity.RESULT_OK)
 
@@ -114,22 +115,21 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth.currentUser
         if(currentUser != null){
-            updateUiWithUser((currentUser))
+            updateUiWithUser((currentUser.email!!))
         }
 
 
     }
 
 
-    private fun updateUiWithUser(model: FirebaseUser) {
-        val welcome = getString(R.string.update)
-        val displayName = model.displayName
+    fun updateUiWithUser(email: String) {
+        val welcome = getString(R.string.welcome)
         // TODO : initiate successful logged in experience
         val intent = Intent(this,MainActivity::class.java);
         startActivity(intent);
         Toast.makeText(
                 applicationContext,
-                "$welcome $displayName",
+                "$welcome $email",
                 Toast.LENGTH_LONG
         ).show()
     }

@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             if (it.exists()){
                 println(it.childrenCount)
                 it.children.forEach { x ->  MetricsData.SnapshotList.add(x) }
+                fetchLoadedMetrics()
             }else{
                 Toast.makeText(this,"Not Found",Toast.LENGTH_SHORT).show()
             }
@@ -74,14 +75,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
     }
 
     private fun fetchLoadedMetrics(){
         val latestTv = findViewById<TextView>(R.id.latestMetric)
         var highestMetric : Int = -1
-        var tmpIndex : Int = 0
+        var tmpIndex  = 0
 
         if(MetricsData.SnapshotList.size > 0) {
 
@@ -101,10 +100,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Snapshot Size = 0",Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
-
 
 
 

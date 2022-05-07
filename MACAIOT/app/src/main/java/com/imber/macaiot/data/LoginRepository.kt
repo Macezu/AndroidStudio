@@ -5,7 +5,6 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.imber.macaiot.ui.login.LoginActivity
-import com.imber.macaiot.ui.login.LoginViewModel
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -31,29 +30,30 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout(auth)
     }
 
-    fun login(email: String, password: String, auth: FirebaseAuth, loginActvity: LoginActivity): FirebaseUser? {
+    fun login(email: String, password: String, auth: FirebaseAuth, loginActivity: LoginActivity): FirebaseUser? {
         // handle login
-        var fbUser : FirebaseUser?
+        var fbUser : FirebaseUser? = null
         auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(loginActvity) { task ->
+                .addOnCompleteListener(loginActivity) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         fbUser = auth.currentUser
-                        setLoggedInUser(fbUser)
+                        setLoggedInUser(fbUser!!)
+                        loginActivity.updateUiWithUser(fbUser!!.email!!)
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
                         fbUser = null
                     }
-                }
 
-        return user
+                }
+        return fbUser
     }
 
-    private fun setLoggedInUser(loggedInUser: FirebaseUser?) {
-        println("TÄÄLLÄ")
-        println(loggedInUser)
+    private fun setLoggedInUser(loggedInUser: FirebaseUser) {
+        println("kissa $loggedInUser")
         this.user = loggedInUser
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
