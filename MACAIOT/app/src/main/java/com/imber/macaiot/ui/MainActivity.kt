@@ -1,5 +1,6 @@
 package com.imber.macaiot.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,11 +10,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.imber.macaiot.R
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import com.jjoe64.graphview.series.PointsGraphSeries
+import java.text.NumberFormat
 import java.util.*
 
 
@@ -38,12 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         getDataFromFireBase()
 
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
+
         fetchDataB.setOnClickListener {
             populateView()
         }
 
-        // custom label formatter to show currency "EUR"
-        // custom label formatter to show currency "EUR"
+
+        // custom label formatter to show
         graph.gridLabelRenderer.labelFormatter = object : DefaultLabelFormatter() {
             override fun formatLabel(value: Double, isValueX: Boolean): String {
                 return if (isValueX) {
@@ -51,19 +58,28 @@ class MainActivity : AppCompatActivity() {
                     super.formatLabel(value, isValueX) + " :00"
                 } else {
                     // show currency for y values
-                    super.formatLabel(value, isValueX) + " °C"
+                        if (value >= 35.0) {
+                            super.formatLabel(value, isValueX) + " %"
+                        } else {
+                            super.formatLabel(value, isValueX) + " °C"
+                        }
+
                 }
             }
         }
 
-        graph.viewport.isYAxisBoundsManual = true
-        graph.viewport.setMaxY(35.0)
+/*        graph.viewport.isYAxisBoundsManual = true
         graph.viewport.setMinY(10.0)
+        graph.viewport.setMaxY(80.0)*/
 
-/*        graph.viewport.isXAxisBoundsManual = true
+        graph.viewport.isXAxisBoundsManual = true
+        graph.viewport.setMinX(0.0)
         graph.viewport.setMaxX(23.0)
-        graph.viewport.setMinX(0.0)*/
 
+
+/*        // enable scaling and scrolling
+        graph.viewport.isScalable = true; // enables horizontal zooming and scrolling
+        graph.viewport.setScalableY(true); // enables vertical zooming and scrolling*/
     }
 
     override fun onResume() {
@@ -86,7 +102,6 @@ class MainActivity : AppCompatActivity() {
 
         database.get().addOnSuccessListener {
             if (it.exists()){
-                println(it.childrenCount)
                 it.children.forEach { x ->  MetricsData.SnapshotList.add(x) }
                 populateView()
             }else{
@@ -105,7 +120,9 @@ class MainActivity : AppCompatActivity() {
         val graph = findViewById<View>(R.id.graph) as GraphView
         var highestMetric : Int = -1
         var tmpIndex  = 0
-        var listOfPairs = mutableListOf<Pair<Double, Double>>()
+        var listOfTempPairs = mutableListOf<Pair<Double, Double>>()
+        var listOfHumPairs = mutableListOf<Pair<Double, Double>>()
+
 
         if(MetricsData.SnapshotList.size > 0) {
             // Get latest time this could be just refactored as a comparator
@@ -119,37 +136,62 @@ class MainActivity : AppCompatActivity() {
                     tmpIndex = index
                 }
 
+                //Temp.
                 var elementTemperature = element.value.toString().substringBefore("°C")
                 elementTemperature = elementTemperature.substring(elementTemperature.length - 5)
 
+                var tempPair  = Pair(hourInKey.toDouble(), elementTemperature.toDouble())
+                listOfTempPairs.add(index, tempPair)
+
+                //humidity
                 var elementHumidity = element.value.toString().substringAfter("y=")
                 elementHumidity = elementHumidity.substring(0, elementHumidity.length - 2)
 
-                var pair  = Pair(hourInKey.toDouble(), elementTemperature.toDouble())
-                listOfPairs.add(index, pair)
+                var humPair  = Pair(hourInKey.toDouble(), elementHumidity.toDouble())
+                listOfHumPairs.add(index, humPair)
 
             }
 
-            listOfPairs.sortBy { it.first }
-            listOfPairs.forEach { it -> println(it) }
+            listOfTempPairs.sortBy { it.first }
+            listOfTempPairs.forEach { it -> println(it) }
             var i = 0
 
-
-            val dPoints = arrayOfNulls<DataPoint>(listOfPairs.size)
-            listOfPairs.forEach { it ->
+            val tempdataPoints = arrayOfNulls<DataPoint>(listOfTempPairs.size)
+            listOfTempPairs.forEach { it ->
                 var dataPoint = DataPoint(it.first, it.second)
-                if (!dPoints.contains(dataPoint)){
-                    dPoints[i] = dataPoint
-                    println(i)
-                    println(dataPoint)
+                if (!tempdataPoints.contains(dataPoint)){
+                    tempdataPoints[i] = dataPoint
                     i++
                 }
             }
 
-
-            if (dPoints.isNotEmpty()) {
-                val series = LineGraphSeries(dPoints)
+            if (tempdataPoints.isNotEmpty()) {
+                val series = LineGraphSeries(tempdataPoints)
+                series.title = "Temperature"
+                series.color = (Color.RED)
                 graph.addSeries(series)
+
+            }
+
+            //humidity
+            listOfHumPairs.sortBy { it.first }
+            listOfHumPairs.forEach { it -> println(it) }
+            i = 0
+
+            val humDataPoints = arrayOfNulls<DataPoint>(listOfHumPairs.size)
+            listOfHumPairs.forEach { it ->
+                var dataPoint = DataPoint(it.first, it.second)
+                if (!humDataPoints.contains(dataPoint)){
+                    humDataPoints[i] = dataPoint
+                    i++
+                }
+            }
+
+            if (humDataPoints.isNotEmpty()) {
+                val series2 = PointsGraphSeries(humDataPoints)
+                series2.title = "Humidity"
+                series2.color = (Color.BLUE)
+                graph.addSeries(series2)
 
             }
 
