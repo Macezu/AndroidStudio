@@ -17,8 +17,6 @@ const hours : string = (currentTime.getHours() + 3).toString();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 exports.pushNotification = functions.database.ref(`${year}/${month}/${day}`).onWrite((change, _context) => {
-  console.log("Push notification event triggered");
-
   //  Get the current value of what was written to the Realtime Database.
   const valueObject = change.after.val();
   // functions.logger.log("Change AFTER: ", valueObject);
@@ -28,26 +26,47 @@ exports.pushNotification = functions.database.ref(`${year}/${month}/${day}`).onW
   // functions.logger.log("hours + objProp: ", objProp);
 
   // Get Temperature and humidity
-  const currentTemp = valueObject[objProp]["Temperature"];
-  const currentHum = valueObject[objProp]["Humidity"];
-  functions.logger.log("CurrentTemp: ", currentTemp);
-  functions.logger.log("CurrentHumidity: ", currentHum);
-  // Create a notification
-  const payload = {
-    notification: {
-      title: "Raja-arvo ylitetty",
-      body: `Lämpötila nyt:  ${currentTemp}`,
-      sound: "default",
-    },
-  };
+  const currentStrTemp : string = valueObject[objProp]["Temperature"];
+  const currentStrHum : string = valueObject[objProp]["Humidity"];
+  // functions.logger.log("current Temp: ", currentStrTemp);
+  // functions.logger.log("current Humidity: ", currentStrHum);
 
-  // Create an options object that contains the time to live for the notification and the priority
-  const options = {
-    priority: "high",
-    timeToLive: 60 * 60 * 24,
-  };
+  // extract floats
+  const currentFloatTemp = parseFloat(currentStrTemp.substring(0, currentStrTemp.length -2));
+  const currentFloatHum = parseFloat(currentStrHum.substring(0, currentStrHum.length -1));
+  // functions.logger.log("current FloatTemp: ", currentFloatTemp);
+  // functions.logger.log("current FloatHumidity: ", currentFloatHum);
 
-  return admin.messaging().sendToTopic("pushNotifications", payload, options);
+  // Resolve message if needed
+  let bodyvalue = "";
+  if (currentFloatTemp >= 38 || currentFloatTemp <= 18) {
+    bodyvalue = `Lämpötila: ${currentStrTemp}`;
+  }
+  if (currentFloatHum > 70 || currentFloatHum <= 25) {
+    bodyvalue = bodyvalue + ` Kosteus: ${currentStrHum}`;
+  }
+
+  // If body has been filled send notification
+  if (bodyvalue) {
+    // Create a notification
+    const payload = {
+      notification: {
+        title: "Raja-arvo rikottu",
+        body: bodyvalue,
+        sound: "default",
+      },
+    };
+
+    // Create an options object that contains the time to live for the notification and the priority
+    const options = {
+      priority: "high",
+      timeToLive: 60 * 60 * 24,
+    };
+    functions.logger.log("payload sent");
+    return admin.messaging().sendToTopic("pushNotifications", payload, options);
+  } else {
+    return null;
+  }
 });
 
 // #region "cemetary"
