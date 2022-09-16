@@ -12,28 +12,33 @@ const year: string = currentTime.getFullYear().toString();
 const month: string = (currentTime.getMonth() + 1).toString();
 const day: string = currentTime.getDate().toString();
 
-const hours : string = (currentTime.getHours() + 3).toString();
+const hours: string = (currentTime.getHours() + 3).toString();
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 exports.pushNotification = functions.database.ref(`${year}/${month}/${day}`).onWrite((change, _context) => {
   //  Get the current value of what was written to the Realtime Database.
   const valueObject = change.after.val();
-  // functions.logger.log("Change AFTER: ", valueObject);
+
+
+  if (!valueObject) {
+    functions.logger.log("Value object is null");
+    return null;
+  }
 
   // Form string to find correct prop
-  const objProp = hours+":00";
+  const objProp = hours + ":00";
   // functions.logger.log("hours + objProp: ", objProp);
 
   // Get Temperature and humidity
-  const currentStrTemp : string = valueObject[objProp]["Temperature"];
-  const currentStrHum : string = valueObject[objProp]["Humidity"];
+  const currentStrTemp: string = valueObject[objProp]["Temperature"];
+  const currentStrHum: string = valueObject[objProp]["Humidity"];
   // functions.logger.log("current Temp: ", currentStrTemp);
   // functions.logger.log("current Humidity: ", currentStrHum);
 
   // extract floats
-  const currentFloatTemp = parseFloat(currentStrTemp.substring(0, currentStrTemp.length -2));
-  const currentFloatHum = parseFloat(currentStrHum.substring(0, currentStrHum.length -1));
+  const currentFloatTemp = parseFloat(currentStrTemp.substring(0, currentStrTemp.length - 2));
+  const currentFloatHum = parseFloat(currentStrHum.substring(0, currentStrHum.length - 1));
   // functions.logger.log("current FloatTemp: ", currentFloatTemp);
   // functions.logger.log("current FloatHumidity: ", currentFloatHum);
 
